@@ -1,5 +1,5 @@
-const Sequelize=require('sequelize');
-
-const sequelize=new Sequelize('group-chat','root','at_DB#333111',{dialect:'mysql',host:'localhost'});
+const Sequelize=require('sequelize');	
+require('dotenv').config();
+const sequelize=new Sequelize(process.env.DB_SCHEMA,process.env.DB_TYPE,process.env.DB_PASSWORD,{dialect:'mysql',host:process.env.DB_HOST});
 
 module.exports=sequelize;

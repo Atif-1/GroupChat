@@ -8,7 +8,7 @@ async function userLogin(e){
 	const email=document.getElementById('email').value;
 	const password=document.getElementById('password').value;
 	const UserDetail={"email":email,"password":password};
-	const resullt=await axios.post("http://localhost:3000/user/login",UserDetail);
+	const result=await axios.post("http://localhost:3000/user/login",UserDetail);
 	}
 	catch(err){
 		console.log(err);
