@@ -9,12 +9,12 @@ exports.userSignup=async (req,res)=>{
 	const users=await User.findAll();
 	for(let user of users){
 		if(user.email==email || user.phone==phone){
-			return res.status(400).json({success:false,message:'User already exist'});
+			return res.status(200).json({success:false,message:"User already exist,Please Login"});
 		}
 	}
 	const encryptPassword=await(bcrypt.hash(password,10));
 	User.create({name:name,email:email,phone:phone,password:encryptPassword});
-	res.status.json({success:true,message:'successfully register'});
+	res.status(200).json({success:true,message:'successfully signed up'});
 }
 
 exports.getUsers=async(req,res)=>{
