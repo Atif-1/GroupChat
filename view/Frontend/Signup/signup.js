@@ -3,8 +3,9 @@ const submitBtn=document.getElementById('submit-btn');
 
 submitBtn.addEventListener('click',sendUserDetails);
 
-function sendUserDetails(e){
+async function sendUserDetails(e){
 	e.preventDefault();
+	try{
 	const Name=document.getElementById('name').value;
 	const Email=document.getElementById('email').value;
 	const Phone=document.getElementById('phone').value;
@@ -15,10 +16,11 @@ function sendUserDetails(e){
 		phone:Phone,
 		password:Password
 	};
-	axios.post('http://localhost:3000/user/signup',UserDetails).then((result) => {
-		console.log(result);
-	}).catch((err) => {
+	const msg=await axios.post('http://localhost:3000/user/signup',UserDetails);
+	console.log(msg);
+	alert(msg.data.message);
+	}
+	catch(err){
 		console.log(err);
-	});
-	console.log(UserDetails);
+	}
 }
