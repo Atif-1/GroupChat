@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Signup</title>
+	<link href="./signup.css" rel="stylesheet">
+</head>
+<body>
+	<nav>
+		<h1>Chat App</h1>
+		<a href="" id="loginBtn">Log In</a>
+	</nav>
+	<div id="main-container">
+		<div id="picture"><img src="./vector-characters-of-people-chatting-through-smartphones-illustration.jpg" alt="image" width="50%" height="100%"></div>
+		<div id="user-form"><h1 id="form-title">Sign Up</h1><div id="form-box"><form>
+			<label for="name">Enter Name</label><br>
+			<input type="text" id="name" class="user-input" name="name" required><br>
+			<label for="email">Enter Email</label><br>
+			<input type="email" id="email" class="user-input" name="email" required><br>
+			<label for="phone">Enter Phone Number</label><br>
+			<input type="number" id="phone" class="user-input" name="phone" required><br>
+			<label for="password">Enter Password</label><br>
+			<input type="password" id="password" class="user-input" name="password" required><br>
+			<input type="submit" id="submit-btn" value="Signup">
+		</form></div></div>
+	</div>
+</body>
+<script src="./signup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</html>

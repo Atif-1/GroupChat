@@ -15,5 +15,10 @@ function sendUserDetails(e){
 		phone:Phone,
 		password:Password
 	};
+	axios.post('http://localhost:3000/user/signup',UserDetails).then((result) => {
+		console.log(result);
+	}).catch((err) => {
+		console.log(err);
+	});
 	console.log(UserDetails);
 }

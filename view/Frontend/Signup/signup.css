@@ -1,0 +1,81 @@
+body{
+	margin: 0px;
+	padding:0px;
+}
+nav {
+	background-color: #5072ed;
+	color: #fff;
+	padding: 1rem;
+	margin: 0px;
+}
+nav h1{
+	margin: 0px;
+	display: inline;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+nav a{
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	text-decoration: none;
+	color: white;
+	float: right;
+	font-size: 1.2rem;
+	margin: 0px;
+	margin-left: 1rem;
+}
+#main-container{
+	display: flex;
+}
+#main-container div img{
+	width: 50%;
+	position: absolute;
+	left: 0px;
+	height: 100%;
+}
+#main-container #user-form{
+	width: 50%;
+	right: 0px;
+	position: absolute;
+	height: 100%;
+	align-content: center;
+	
+}
+#form-box{
+	width: 50%;
+	height: 45%;
+	margin: auto;
+	padding: 1rem;
+	border: 2px solid grey;
+	border-radius:1rem ;
+	background-color: white;
+}
+#form-box label{
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: large;
+	color: rgb(103, 103, 103);
+}
+#form-box .user-input{
+	width: 98%;
+	margin-bottom: 1.5rem;
+	
+}
+#submit-btn{
+	height: 2rem;
+	width: 99%;
+	margin: auto;
+	font-size: larger;
+	border: 1px solid #5072ed;
+	border-radius: 5px;
+	background-color:#fff ;
+	color: #5072ed;
+	text-align: center;
+
+}
+#submit-btn:hover{
+	background-color: #3557cf;
+	color: white;
+}
+#form-title{
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	text-align: center;
+	color: #3557cf;
+}
