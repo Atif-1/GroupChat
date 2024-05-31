@@ -27,3 +27,8 @@ nav h1{
 	background-color: grey;
 	color: white;
 }
+#user-message{
+	width: 40rem;
+	margin: auto;
+	padding: auto;
+}

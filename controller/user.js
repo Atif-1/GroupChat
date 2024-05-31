@@ -10,6 +10,7 @@ async function generateToken(text){
 	}
 
 exports.userSignup=async (req,res)=>{
+	try{
 	const name=req.body.name;
 	const email=req.body.email;
 	const phone=req.body.phone;
@@ -20,9 +21,13 @@ exports.userSignup=async (req,res)=>{
 			return res.status(200).json({success:false,message:"User already exist,Please Login"});
 		}
 	}
-	const encryptPassword=await(bcrypt.hash(password,process.env.SALT_ROUNDS));
+	const encryptPassword=await(bcrypt.hash(password,10));
 	User.create({name:name,email:email,phone:phone,password:encryptPassword});
 	res.status(200).json({success:true,message:'successfully signed up'});
+	}
+	catch(err){
+		console.log(err);
+	}
 }
 
 exports.userLogin=async(req,res)=>{
@@ -33,7 +38,7 @@ exports.userLogin=async(req,res)=>{
 	for(let user of users){
 		if(user.email==email){
 			if(await bcrypt.compare(password,user.password)){
-			return res.status(200).json({"name":await generateToken(user.name),"id":await generateToken(user.id)});
+			return res.status(200).json(await generateToken(user.id));
 			}
 			else{
 				return res.status(401).json({success:false,message:"User not authorised"});
