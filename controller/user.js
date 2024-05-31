@@ -4,8 +4,8 @@ const jwt=require('jsonwebtoken');
 
 require('dotenv').config();
 
-async function generateToken(id){
-	const token=jwt.sign(id,process.env.TOKEN_SECRET);
+async function generateToken(text){
+	const token=jwt.sign(text,process.env.TOKEN_SECRET);
 	return token;
 	}
 
@@ -33,9 +33,7 @@ exports.userLogin=async(req,res)=>{
 	for(let user of users){
 		if(user.email==email){
 			if(await bcrypt.compare(password,user.password)){
-				const token=await generateToken({id:user.id});
-				console.log(token);
-			return res.status(200).json(token);
+			return res.status(200).json({"name":await generateToken(user.name),"id":await generateToken(user.id)});
 			}
 			else{
 				return res.status(401).json({success:false,message:"User not authorised"});

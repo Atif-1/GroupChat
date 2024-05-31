@@ -1,0 +1,29 @@
+body{
+	margin: 0px;
+	padding:0px;
+}
+nav {
+	background-color: #5072ed;
+	color: #fff;
+	padding: 1rem;
+	margin: 0px;
+}
+nav h1{
+	margin: 0px;
+	text-align: center;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#chat-box{
+	border: 1px solid gray;
+	width: 50rem;
+	margin: auto;
+}
+#chat-list{
+	list-style: none;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	padding: 0.5rem;
+}
+#chat-list:nth-child(odd){
+	background-color: grey;
+	color: white;
+}

@@ -2,6 +2,7 @@ const submitBtn=document.getElementById('submit-btn');
 
 submitBtn.addEventListener('click',userLogin);
 
+
 async function userLogin(e){
 	try{
 	e.preventDefault();
@@ -9,6 +10,9 @@ async function userLogin(e){
 	const password=document.getElementById('password').value;
 	const UserDetail={"email":email,"password":password};
 	const result=await axios.post("http://localhost:3000/user/login",UserDetail);
+	console.log(result.data);
+	localStorage.setItem(token.id,token.name);
+	window.location.assign('http://127.0.0.1:5500/view/Frontend/ChatApp/chat.html')
 	}
 	catch(err){
 		console.log(err);
