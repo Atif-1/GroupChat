@@ -19,6 +19,7 @@ async function sendUserDetails(e){
 	const msg=await axios.post('http://localhost:3000/user/signup',UserDetails);
 	console.log(msg);
 	alert(msg.data.message);
+	
 	}
 	catch(err){
 		console.log(err);
