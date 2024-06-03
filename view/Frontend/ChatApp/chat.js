@@ -14,15 +14,19 @@ function parseJwt (token) {
 const token=localStorage.getItem("token");
 window.addEventListener('DOMContentLoaded',async()=>{
 	try{
-	const li=document.createElement('li');
-	li.appendChild(document.createTextNode("You Joined"));
-	chatList.appendChild(li);
-	const messages=await axios.get('http://localhost:3000/chat/messages');
-	console.log(messages.data);
-	for(let message of messages.data){
-		showMsg(message);
-	}
-	console.log(messages.data);
+		setInterval(async function() {
+			chatList.innerHTML="";
+			const li=document.createElement('li');
+			li.appendChild(document.createTextNode("You Joined"));
+			chatList.appendChild(li);
+			const messages=await axios.get('http://localhost:3000/chat/messages');
+			console.log(messages.data);
+			for(let message of messages.data){
+				showMsg(message);
+			}
+			console.log(messages.data);
+		},1000);
+	
 	}catch(err){
 		console.log(err);
 	}
