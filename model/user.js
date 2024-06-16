@@ -24,6 +24,10 @@ const User=sequelize.define('user',{
 	password:{
 		type:Sequelize.STRING,
 		allowNull:false,
+	},
+	isOnline:{
+		type:Sequelize.BOOLEAN,
+		allowNull:false
 	}
 });
 module.exports=User;

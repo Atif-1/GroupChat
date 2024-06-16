@@ -15,6 +15,9 @@ exports.userSignup=async (req,res)=>{
 	const email=req.body.email;
 	const phone=req.body.phone;
 	const password=req.body.password;
+	if(password.length<6){
+		return res.json({success:false,message:"Signup failed please enter password more than 6 characters"});
+	}
 	const users=await User.findAll();
 	for(let user of users){
 		if(user.email==email || user.phone==phone){
@@ -22,7 +25,7 @@ exports.userSignup=async (req,res)=>{
 		}
 	}
 	const encryptPassword=await(bcrypt.hash(password,10));
-	User.create({name:name,email:email,phone:phone,password:encryptPassword});
+	User.create({name:name,email:email,phone:phone,password:encryptPassword,isOnline:false});
 	res.status(200).json({success:true,message:'successfully signed up'});
 	}
 	catch(err){
@@ -38,6 +41,7 @@ exports.userLogin=async(req,res)=>{
 	for(let user of users){
 		if(user.email==email){
 			if(await bcrypt.compare(password,user.password)){
+			await user.update({isOnline:true});
 			return res.status(200).json({token:await generateToken(user.name,user.id)});
 			}
 			else{
@@ -46,6 +50,27 @@ exports.userLogin=async(req,res)=>{
 		}
 	}
 	res.status(404).json({success:false,message:"User not found"});
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+exports.userLogout=async(req,res)=>{
+	try{
+	const userId=req.params.id;
+	const user=await User.findByPk(userId);
+	await user.update({isOnline:false});
+	res.json({success:true,message:"User successfully logout"});
+	}
+	catch(err){
+		console.log(err);
+
+	}
+}
+exports.getUsers=async(req,res)=>{
+	try{
+		const users=await User.findAll({where:{isOnline:true}});
+		res.json(users);
 	}
 	catch(err){
 		console.log(err);

@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Chat=require('../model/chat.js');
 const User=require('../model/user.js');
 
@@ -17,8 +18,17 @@ exports.postMessage=async(req,res)=>{
 
 exports.getMessages=async(req,res)=>{
 	try{
-	const chats=await Chat.findAll();
- 	res.status(200).json(chats);
+	const msgId=req.params.msgId;
+	if(msgId===-1){
+		const chats=await Chat.findAll();
+		console.log(chats);
+		return res.status(200).json(chats);
+	}
+	else{
+		const chats=await Chat.findAll
+		({where:{id:{[Op.gt]:msgId}}});
+		res.status(200).json(chats);
+	}
 	}
 	catch(err){
 		res.status(400).json({success:false,message:"server error"});

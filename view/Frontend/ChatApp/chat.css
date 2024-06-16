@@ -10,8 +10,12 @@ nav {
 }
 nav h1{
 	margin: 0px;
+	display: inline-block;
+	position: relative;
+	left: 45%;
 	text-align: center;
 	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 2rem;
 }
 #chat-box{
 	border: 1px solid gray;
@@ -31,4 +35,15 @@ nav h1{
 	width: 40rem;
 	margin: auto;
 	padding: auto;
+}
+#logout-btn{
+	background-color: #5072ed;
+	border: none;
+	float: right;
+	color: white;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: large;
+}
+#logout-btn:hover{
+	cursor: pointer;
 }

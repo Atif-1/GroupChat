@@ -24,5 +24,6 @@ async function userLogin(e){
 	}
 	catch(err){
 		console.log(err);
+		alert('Something went wrong');
 	}
 }
