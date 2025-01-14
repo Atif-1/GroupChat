@@ -1,11 +1,16 @@
 const Sequelize=require('sequelize');
 const sequelize=require('../util/database.js');
 
-const Chats=sequelize.define('chat',{
+const Messages=sequelize.define('messages',{
+	id:{
+		type:Sequelize.INTEGER,
+		primaryKey:true,
+		autoIncrement:true,
+	},
 	message:{
 		type:Sequelize.TEXT,
 		allowNull:false
 	}
 });
 
-module.exports=Chats;
+module.exports=Messages;

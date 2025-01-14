@@ -1,14 +1,11 @@
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const Chat=require('../model/chat.js');
 const User=require('../model/user.js');
 
 exports.postMessage=async(req,res)=>{
+
 	try{
-	const id=req.params.id;
-	const msg=req.body.message;
-	console.log(msg);
-	console.log(id);
-	Chat.create({message:msg,userId:id});
+	Chat.create({message:req.body.message,groupId:req.params.groupId,userId:req.user.userId});
 	res.status(200).json({success:true,message:"successfully send"});
 	}
 	catch(err){
@@ -16,22 +13,37 @@ exports.postMessage=async(req,res)=>{
 	}
 }
 
-exports.getMessages=async(req,res)=>{
-	try{
-	const msgId=req.params.msgId;
-	if(msgId===-1){
-		const chats=await Chat.findAll();
-		console.log(chats);
-		return res.status(200).json(chats);
+exports.getMessages = async (req, res) => {
+	try {
+	  const { groupId, msgId } = req.query;
+  
+	  
+	  if (!groupId) {
+		return res.status(400).json({ success: false, message: 'Group ID is required' });
+	  }
+  
+	  const whereConditions = { groupId };
+  
+	  if (msgId && msgId !== '-1') {
+		whereConditions.id = { [Op.gt]: msgId }; 
+	  }
+  
+	  const chats = await Chat.findAll({
+		where: whereConditions,
+		include: [{
+		  model: User,
+		  attributes: ['name']  
+		}]
+	  });
+	 
+	  const msg = chats.map(chat => ({
+		id: chat.id,
+		user: chat.user.name,
+		message: chat.message
+	  }));
+	  return res.status(200).json(msg);
+	} catch (err) {
+	  console.error(err);
+	  return res.status(500).json({ success: false, message: 'Server error' });
 	}
-	else{
-		const chats=await Chat.findAll
-		({where:{id:{[Op.gt]:msgId}}});
-		res.status(200).json(chats);
-	}
-	}
-	catch(err){
-		res.status(400).json({success:false,message:"server error"});
-		console.log(err);
-	}
-}
+  };

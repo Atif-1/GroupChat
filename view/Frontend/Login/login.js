@@ -1,3 +1,4 @@
+window.addEventListener("DOMContentLoaded",async()=>{
 const submitBtn=document.getElementById('submit-btn');
 
 submitBtn.addEventListener('click',userLogin);
@@ -20,10 +21,10 @@ async function userLogin(e){
 	const result=await axios.post("http://localhost:3000/user/login",UserDetail);
 	const token=result.data.token;	
 	localStorage.setItem("token",token);
-	window.location.assign('http://127.0.0.1:5500/view/Frontend/ChatApp/chat.html');
+	window.location.assign('../ChatApp/chat.html');
 	}
 	catch(err){
 		console.log(err);
 		alert('Something went wrong');
 	}
-}
+}})

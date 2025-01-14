@@ -7,15 +7,50 @@
 	<link href="./chat.css" rel="stylesheet">
 </head>
 <body>
+	<main>
 	<nav>
 		<h1>Chat App</h1>
-		<button id="logout-btn">Log Out</button>
-	</nav>
-	<div id="main-container">
-		<div id="chat-box"><ul id="chat-list">
-		</ul>
-	<form><input type="text" id="user-message"><input type="submit" id="submit-btn" value="Send"></form></div>
+		<button type="button" id="logout-btn">Log Out</button>
+	</nav>	
+	<div id="container">
+		<div id="groups-window">
+			<div style="display: flex;"><h3>Groups</h3><button id="openForm" class="btn">create new</button></div><hr>
+			<div id="groups-box"></div>	
+		</div>	
+		<div id="chat-window">
+			<div class="group-element"><button id="openMemberForm">Add Memebers</button></div>
+			<div id="chats">
+			</div>
+		</div>
 	</div>
+	</main>
+	<div class="group-element">
+	<footer><input type="text" id="message" placeholder="type your message here.....">
+	<button type="button" id="submit-btn">SEND</button></footer>
+	</div>
+	<div id="popupForm" class="modal">
+		<div class="modal-content">
+			<span class="close" id="groupFormClose">&times;</span>
+			<h2>Create Group</h2>
+			<form id="form">
+				<label for="name"> Group Name:</label>
+				<input type="text" id="group-name" name="name" required>
+				<button type="submit" id="add-member">Create</button>
+			</form>
+		</div>
+	</div>
+	<div id="popupMemberForm" class="modal">
+		<div class="modal-content">
+			<span class="close" id="memberFormClose">&times;</span>
+			<h2>Add Members Of Group</h2>
+			<div id="members"></div>
+			<ul id="user-list">
+
+			</ul>
+			<button type="submit" id="m-submit-btn">Add Members</button>
+		</div>
+	</div>
+
 </body>
 <script src="./chat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -21,6 +21,12 @@ nav a{
 	font-size: 1.2rem;
 	margin: 0px;
 	margin-left: 1rem;
+	padding: 5px;
+}
+nav a:hover{
+	background-color: white;
+	color: #3557cf;
+	border-radius: 10px;
 }
 #main-container{
 	display: flex;

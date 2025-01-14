@@ -2,6 +2,7 @@ const User=require('../model/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
+
 require('dotenv').config();
 
 async function generateToken(name,id){
@@ -64,13 +65,18 @@ exports.userLogout=async(req,res)=>{
 	}
 	catch(err){
 		console.log(err);
-
 	}
 }
 exports.getUsers=async(req,res)=>{
 	try{
-		const users=await User.findAll({where:{isOnline:true}});
-		res.json(users);
+		const users=await User.findAll();
+		let data=[];
+		for(let user of users){
+			if(user.id!=req.user.userId){
+			data.push({id:user.id,name:user.name});
+			}
+		}
+		res.status(200).json(data);
 	}
 	catch(err){
 		console.log(err);
